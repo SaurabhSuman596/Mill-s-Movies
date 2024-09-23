@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "build": "netlify deploy --prod"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
@@ -16,10 +15,7 @@
     "ejs": "^3.1.10",
     "express": "^4.21.0",
     "movie-downloading-site": "file:",
-    "netlify-cli": "^17.36.2",
-    "netlify-lambda": "^2.0.16",
     "nodemon": "^3.1.4",
-    "puppeteer": "^23.3.1",
-    "serverless-http": "^3.2.0"
+    "puppeteer": "^23.3.1"
   }
 }

@@ -3,7 +3,7 @@ const path = require('path');
 const puppeteer = require('puppeteer');
 const bodyParser = require('body-parser');
 const url = require('url');
-const serverless = require('serverless-http');
+
 
 let moviesList = [];
 let singleMovieQuality = {};
@@ -132,7 +132,6 @@ const searchMovies = async (MOVIE_NAME) => {
 
 //Creating an express app
 const app = express();
-const router = express.Router();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: true }));
 
@@ -144,7 +143,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 //App Route
 
 //Homepage
-router.get('/', (req, res) => {
+app.get('/', (req, res) => {
   const movie = req.query.movie;
   res.render('index', {
     title: "Mill's Movies",
@@ -153,7 +152,7 @@ router.get('/', (req, res) => {
 });
 
 //MoviePage
-router.post('/:movie', async (req, res) => {
+app.post('/:movie', async (req, res) => {
   const movieName = req.body?.movie;
   if (movieName) {
     moviesList = await searchMovies(movieName);
@@ -164,7 +163,7 @@ router.post('/:movie', async (req, res) => {
   }
 });
 
-router.get('/:movie', (req, res) => {
+app.get('/:movie', (req, res) => {
   if (moviesList.length < 1) {
     res.redirect(
       url.format({
@@ -183,7 +182,7 @@ router.get('/:movie', (req, res) => {
 });
 
 //Single Movie Page
-router.post('/movie/selected', async (req, res) => {
+app.post('/movie/selected', async (req, res) => {
   const movieLink = req.body?.link;
   if (movieLink) {
     singleMovieQuality = await searchMovieQuality(movieLink);
@@ -194,7 +193,7 @@ router.post('/movie/selected', async (req, res) => {
   }
 });
 
-router.get('/movie/selected', (req, res) => {
+app.get('/movie/selected', (req, res) => {
   res.render('singleMovie', {
     singleMovieQuality,
     title: singleMovieQuality.movieName,
@@ -206,7 +205,7 @@ router.get('/movie/selected', (req, res) => {
 });
 
 //Single Movie Page
-router.post('/movie/selected/link', async (req, res) => {
+app.post('/movie/selected/link', async (req, res) => {
   const movieLink = req.body?.link;
   if (movieLink) {
     singleMovieDownloadingLinks = await searchMovieLink(movieLink);
@@ -221,8 +220,8 @@ router.post('/movie/selected/link', async (req, res) => {
 });
 
 //Listening to the server
-/* app.listen(3000, () => {
+app.listen(3000, () => {
   console.log('Server is listening...');
 });
- */
-module.exports.handler = serverless(app);
+ 
+
