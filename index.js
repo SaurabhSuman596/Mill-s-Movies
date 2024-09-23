@@ -69,7 +69,7 @@ const searchMovieQuality = async (movieLink) => {
     };
 
     await movieListRaw.forEach(async (movie) =>
-      movieListFinal?.moviequality.push({
+      movieListFinal.moviequality.push({
         value: await movie.getAttribute('href'),
         name: await movie.querySelector('.maxbutton>span').textContent.trim(),
       })
