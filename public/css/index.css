@@ -1,0 +1,249 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.mainFrame {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-image: url(../images/movie.jpg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2%;
+  padding: 50px;
+  position: relative;
+}
+
+.mainFrame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.3;
+}
+
+.logo_img {
+  width: 50vw;
+  z-index: 2;
+  min-width: 200px;
+}
+
+h1 {
+  color: white;
+  z-index: 2;
+  font-weight: 400;
+  font-size: max(4.5vw, min(10vw, 20px));
+  text-align: center;
+}
+
+input {
+  width: 35%;
+  height: 8vh;
+  max-height: 50px;
+  border: none;
+  z-index: 2;
+  padding: 18px;
+  font-size: larger;
+  border-radius: 5px;
+  color: #ff0000;
+}
+
+input:focus {
+  outline: 2px solid #ff0000;
+}
+
+button {
+  /*   height: 8vh; */
+  /*   max-height: 50px; */
+  border: none;
+  font-family: 'Inter';
+  background-color: #ff0000;
+  border-radius: 5px;
+  z-index: 2;
+  color: white;
+  padding: 5px 25px;
+  cursor: pointer;
+  max-width: 150px;
+  width: 100%;
+  font-size: large;
+}
+button:hover {
+  opacity: 0.8;
+  transition: all linear 0.3ms;
+}
+
+button > a {
+  color: white;
+  text-decoration: none;
+}
+
+.movieList {
+  max-width: 100vw;
+  min-height: 100vh;
+  background: black;
+  position: relative;
+  padding: 5vh 5vw;
+}
+
+.movieList::before {
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  background-color: #ffffff;
+  opacity: 0.8;
+}
+
+.movieList > h1 {
+  text-align: left;
+  margin: 5vh 0;
+}
+.movieListCont {
+  display: flex;
+  gap: 15px;
+  align-items: top;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.movieCard {
+  flex: 1;
+  max-width: 234px;
+  width: 234px;
+}
+
+.movieCard > a {
+  text-decoration: none;
+  color: white;
+  visibility: hidden;
+}
+
+.movieCard > img {
+  height: 350px;
+  max-width: 234px;
+}
+
+.movieCard > p {
+  text-decoration: none;
+  color: white;
+}
+
+.singleMovie {
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  position: relative;
+}
+.singleMovie > img {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.singleMovieDetails {
+  flex: 1;
+  width: 100%;
+  padding: 30px;
+}
+
+.singleMovieDownload {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  max-width: 100%;
+  gap: 20px;
+  margin: 50px 0;
+}
+.singleMovieDownload > h2 {
+  color: white;
+}
+
+.singleMovieDownload > a {
+  visibility: hidden;
+}
+
+.singleMovieDownload > button {
+  font-family: 'Inter';
+}
+.singleDownloadLinka {
+  visibility: visible;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #ff0000;
+  border-radius: 50%;
+  width: 20vh;
+  height: 20vh;
+  animation: spin 2s linear infinite;
+  z-index: 4;
+}
+
+.loaderCont {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.loaderCont::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: '';
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  opacity: 0.8;
+  z-index: 3;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loaderContActive {
+  display: flex;
+}
+
+@media only screen and (max-width: 720px) {
+  input {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 50px;
+  }
+  .singleMovie {
+    max-height: max-content;
+    height: max-content;
+    flex-direction: column;
+  }
+  .singleMovie > img {
+    width: 80vw;
+    align-self: center;
+    margin-top: 15vh;
+    max-width: 300px;
+  }
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" rel="prefetch" href="/css/index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title><%- title %></title>
+  </head>
+  <body>
+    <div class="mainFrame">
+      <div class="loaderCont">
+        <div class="loader"></div>
+      </div>
+
+      <img class="logo_img" src="../images/logo.svg" alt="Mill's Movies Logo" />
+      <h1>
+        Search : <span id="sapnMovieName"><%= movie || "Movie name" %> </span>
+      </h1>
+      <input id="movieInput" type="text" placeholder="Search any movie..." />
+      <button type="submit" onclick="handleMovieSearchButtonClick()">
+        <!--    <a href="/movie"> -->
+        Search<!--  </a> -->
+      </button>
+    </div>
+    <script src="../js/index.js"></script>
+  </body>
+</html>

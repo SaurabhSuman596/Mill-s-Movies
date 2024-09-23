@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/index.css" />
+    <title><%- title %></title>
+  </head>
+  <body>
+    <img style="position: absolute; margin: 30px 50px;" src="../images/logo.svg" alt="" />
+    <div class="singleMovie">
+      <div class="loaderCont">
+        <div class="loader"></div>
+      </div>
+
+      <img src="<%- singleMovieQuality.moviePoster %> " alt="" />
+      <div class="singleMovieDetails">
+        <h1><%- singleMovieQuality.movieName %></h1>
+        <div id="singleMovieDownloadSec" class="singleMovieDownload">
+          <h2><%- noLink %></h2>
+           <% singleMovieQuality.moviequality.map((movie,index)=>{ %>
+            <div id="sigleMoviequality<%- index %>" class="singleMovieDownloadCont" onclick="handlegetDownloadlink(event)">
+              <a    href="<%- movie.value %>"></a>
+              <button><%= movie.name %></button>
+              </div>
+        <% }); %>
+      </div>
+    </div>
+    <script src="../js/index.js"></script>
+  </body>
+</html>

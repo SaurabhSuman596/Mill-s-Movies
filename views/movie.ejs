@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" rel="prefetch" href="../css/index.css" />
+    <title>Movie</title>
+  </head>
+  <body>
+    <div class="movieList">
+      <div class="loaderCont">
+        <div class="loader"></div>
+      </div>
+      <img src="../images/logo.svg" alt="" />
+      <h1>Search Result : <span><%- title %></span></h1>
+      <div class="movieListCont">
+        <% moviesList.map((movie,index)=>{ %>
+        <div
+          class="movieCard"
+          onclick="handleGetSingleMovie(event)"
+          id="movieCard<%- index %>"
+        >
+          <a href="<%- movie.value %>"></a>
+          <img src="<%- movie.image %> " alt="" />
+          <p><%- movie.name %></p>
+        </div>
+        <% }); %>
+      </div>
+    </div>
+    <script src="../js/index.js"></script>
+  </body>
+</html>
