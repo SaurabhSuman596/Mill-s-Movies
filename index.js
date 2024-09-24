@@ -57,11 +57,9 @@ const searchMovieQuality = async (movieLink) => {
       document.querySelectorAll('.maxbutton')
     );
     const movieName = await document
-      .querySelector('.imdbwp__title')?
-      .textContent?.trim();
+      .querySelector('.imdbwp__title')?.textContent?.trim();
     const moviePoster = await document
-      .querySelector('.imdbwp__img')?
-      .getAttribute('src');
+      .querySelector('.imdbwp__img')?.getAttribute('src');
     const movieListFinal = {
       movieName: movieName,
       moviePoster: moviePoster,
