@@ -30,7 +30,7 @@ const searchMovieLink = async (movieLink) => {
     await movieListRaw.forEach(async (movie) =>
       movieLink.push({
         value: await movie.getAttribute('href'),
-        name: await movie.querySelector('.maxbutton>span').textContent.trim(),
+        name: await movie.querySelector('.maxbutton>span')?.textContent?.trim(),
       })
     );
 
@@ -57,10 +57,10 @@ const searchMovieQuality = async (movieLink) => {
       document.querySelectorAll('.maxbutton')
     );
     const movieName = await document
-      .querySelector('.imdbwp__title')
-      .textContent.trim();
+      .querySelector('.imdbwp__title')?
+      .textContent?.trim();
     const moviePoster = await document
-      .querySelector('.imdbwp__img')
+      .querySelector('.imdbwp__img')?
       .getAttribute('src');
     const movieListFinal = {
       movieName: movieName,
@@ -71,7 +71,7 @@ const searchMovieQuality = async (movieLink) => {
     await movieListRaw.forEach(async (movie) =>
       movieListFinal?.moviequality.push({
         value: await movie.getAttribute('href'),
-        name: await movie.querySelector('.maxbutton>span').textContent.trim(),
+        name: await movie.querySelector('.maxbutton>span')?.textContent?.trim(),
       })
     );
 
@@ -118,10 +118,10 @@ const searchMovies = async (MOVIE_NAME) => {
           .querySelector(
             'div:nth-child(1) > header:nth-child(2) > h2:nth-child(1) > a:nth-child(1)'
           )
-          .getAttribute('href'),
+          ?.getAttribute('href'),
         image: await movie
           .querySelector('.attachment-full.size-full.wp-post-image')
-          .getAttribute('src'),
+          ?.getAttribute('src'),
       })
     );
     return movieListFinal;
@@ -196,9 +196,9 @@ app.post('/movie/selected', async (req, res) => {
 app.get('/movie/selected', (req, res) => {
   res.render('singleMovie', {
     singleMovieQuality,
-    title: singleMovieQuality.movieName,
+    title: singleMovieQuality?.movieName,
     noLink:
-      singleMovieQuality.moviequality.length < 1
+      singleMovieQuality?.moviequality.length < 1
         ? 'Download Links Not available'
         : '',
   });
@@ -209,7 +209,7 @@ app.post('/movie/selected/link', async (req, res) => {
   const movieLink = req.body?.link;
   if (movieLink) {
     singleMovieDownloadingLinks = await searchMovieLink(movieLink);
-    if (singleMovieDownloadingLinks.length >= 1) {
+    if (singleMovieDownloadingLinks?.length >= 1) {
       res.json(singleMovieDownloadingLinks);
     } else {
       res.json({
